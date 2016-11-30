@@ -20,6 +20,7 @@ module.exports = function(app) {
   app.use('/api/getClips', require('./api/getClips'));
   app.use('/api/getSettings', require('./api/getSettings'));
   app.use('/api/setSetting', require('./api/setSetting'));
+  app.use('/api/deleteClip', require('./api/deleteClip'));
   
 
   app.use("/modules", express.static(path.join(__dirname, '../../', 'modules/')));
