@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./setSetting.controller');
+var controller = require('./deleteClip.controller');
 
 var router = express.Router();
 
