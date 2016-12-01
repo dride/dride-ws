@@ -23,6 +23,10 @@ module.exports = function(app) {
   app.use('/api/deleteClip', require('./api/deleteClip'));
   
 
+
+
+
+
   app.use("/modules", express.static(path.join(__dirname, '../../', 'modules/')));
 
 

@@ -1,6 +1,6 @@
 {
-  "name": "meego-server",
-  "version": "0.0.0",
+  "name": "dride-ws",
+  "version": "0.1.0",
   "main": "server/app.js",
   "dependencies": {
     "body-parser": "~1.5.0",
@@ -69,5 +69,19 @@
     "start": "node server/app.js",
     "test": "grunt test"
   },
-  "private": true
+  "private": false,
+  "description": "dride web service",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dride/dride-ws.git"
+  },
+  "keywords": [
+    "dride"
+  ],
+  "author": "dride",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dride/dride-ws/issues"
+  },
+  "homepage": "https://dride.io"
 }
