@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/dride/dride-ws.svg?branch=master)](https://travis-ci.org/dride/dride-ws)
 [![npm version](https://badge.fury.io/js/dride-ws.svg)](https://badge.fury.io/js/dride-ws)
 
 
