@@ -22,6 +22,7 @@ module.exports = function(app) {
   app.use('/api/setSetting', require('./api/setSetting'));
   app.use('/api/deleteClip', require('./api/deleteClip'));
   app.use('/api/updateFirmware', require('./api/updateFirmware'));
+  app.use('/api/isOnline', require('./api/isOnline'));
   
 
 
