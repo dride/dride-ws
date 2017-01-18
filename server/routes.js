@@ -23,6 +23,7 @@ module.exports = function(app) {
   app.use('/api/deleteClip', require('./api/deleteClip'));
   app.use('/api/updateFirmware', require('./api/updateFirmware'));
   app.use('/api/isOnline', require('./api/isOnline'));
+  app.use('/api/getCalibrationImage', require('./api/getCalibrationImage'));
   
 
 
