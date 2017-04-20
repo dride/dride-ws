@@ -13,7 +13,7 @@ exports.index = function(req, res) {
 	//const videoClipsFolder = config.videoClipsFolder;
 
 
-	var videoClipsFolder = path.join(__dirname, '../../../..', 'modules/video/clip/');
+	var videoClipsFolder = path.join(__dirname, '../../../..', 'modules/video/thumb/');
 	var fs = require('fs');
 	
 	fileNames   = [];
