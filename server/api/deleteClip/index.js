@@ -10,7 +10,7 @@ var config = require('../../config/environment');
 
 
 
-router.get('/', function(req, res){
+router.get('/:videoId', function(req, res){
 
 
  	controller.index(req, res)
