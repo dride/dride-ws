@@ -7,84 +7,43 @@ var path = require("path"),
     mv = require('mv'),
     https = require('https'),
     request = require('request'),
-    targz = require('tar.gz'),
-    rmdir = require('rmdir');
-
+    AdmZip = require('adm-zip'),
+    rmdir = require('rmdir'),
+    fileUpload = require('express-fileupload');
 
 
 var config = require('../../config/environment');
 var fileNames = [];
 
 
-// Get list of getPOLists
+/*
+*   receive a zip with the new firmware and updates the files.
+*/
 exports.index = function(req, res) {
 
 
-    //receive a zip with the new firmware and updates the files.
+    // console.log(req.file.path);
 
-    var version = req.param('version');
-    var pathToReleaseZip = 'https://codeload.github.com/dride/dride-ws/tar.gz/' + version;
-
-    var dest = path.join(__dirname, '../../../..', 'dride-ws/');
-    var tmpDest = path.join(__dirname, '../../../..', 'tmpFirmware/');
-
-    //make sure tmpFirmware dir is present
-    if (!fs.existsSync(tmpDest)){
-        fs.mkdirSync(tmpDest);
+    if(!req.file.path)
+    {
+        res.send('{"status": "0", "info": "firmware upload failed"}');
+        return;
     }
 
-    //download firmware gz
-    var file = fs.createWriteStream(tmpDest + "firmware.tar.gz");
-    var request = https.get(pathToReleaseZip, function(response) {
+    //path to zip of firmware
+    var fileDir = req.file.path
 
-        response.pipe(file).on('finish', function() {
+    // reading archives
+    var zip = new AdmZip(fileDir);
+    var zipEntries = zip.getEntries(); // an array of ZipEntry records
 
-            console.log('file downloaded')
-            //remove the current firmware
-            rmdir(dest, function(err, dirs, files) {
-
-                // Extract firmware files
-                targz().extract(tmpDest + "firmware.tar.gz", tmpDest)
-                    .then(function() {
-                        console.log('unzipped !')
-                        //gitHub have a version on the folder name so we move the files one dir higher
-                        mv(tmpDest + 'dride-ws-' + version, dest.replace(/\/$/, ""), function(err) {
-                            console.log(err)
-                            if (err)
-                                res.json({ "status": "0", "reason": err });
-
-                            //remove tmpFirmware dir
-                            rmdir(tmpDest);
+    zip.extractAllTo('/home/Cardigan', true);
 
 
-                        });
-                        res.json({ "status": "1", "reason": "OK!" });
-
-                    })
-                    .catch(function(err) {
-                        console.log('Something is wrong ', err.stack);
-                        res.json({ "status": "0", "reason": err.stack });
-                    });
+    res.send('{"status": "1"}');
 
 
-
-
-            });
-
-
-
-
-
-
-
-        });
-    });
-
-
-
-
-
-
+    require('child_process').exec('sudo /sbin/shutdown -r now', function (msg) { console.log(msg) });
 
 
 };

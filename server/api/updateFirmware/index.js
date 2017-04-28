@@ -8,9 +8,19 @@ var router = express.Router();
 
 var config = require('../../config/environment');
 
+var multer  = require('multer')
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/home/Cardigan/firmware')
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'latest.zip')
+  }
+})
 
+var upload = multer({ storage: storage, mimetype: "application/zip"})
 
-router.get('/', function(req, res){
+router.post('/', upload.single('file'), function(req, res){
 
 
  	controller.index(req, res)

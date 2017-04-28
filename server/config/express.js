@@ -28,7 +28,7 @@ module.exports = function(app) {
   }
 
   if ('development' === env || 'test' === env) {
-    app.use(require('connect-livereload')());
+    //app.use(require('connect-livereload')());
     app.use(morgan('dev'));
     app.use(errorHandler()); // Error handler - has to be last
   }
