@@ -13,6 +13,8 @@ var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
 var path = require('path');
 var config = require('./environment');
+var timeout = require('connect-timeout'); //express v4
+
 
 module.exports = function(app) {
   var env = app.get('env');
@@ -22,7 +24,8 @@ module.exports = function(app) {
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
-  
+  app.use(timeout(120000));
+
   if ('production' === env) {
     app.use(morgan('dev'));
   }
