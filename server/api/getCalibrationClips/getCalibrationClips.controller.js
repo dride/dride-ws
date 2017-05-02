@@ -61,11 +61,12 @@ exports.index = function(req, res) {
 	    return a.maxSpeed - b.maxSpeed;
 	});
 
-
-	res.json({data: 
-			[bySpeed.pop().filename]
-	});
-
+	if (fileNames.length)
+		res.json({data: 
+				[bySpeed.pop().filename]
+		});
+	else
+		res.json({data: [] });
 
 
 };
