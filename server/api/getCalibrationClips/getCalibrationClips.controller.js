@@ -15,7 +15,7 @@ exports.index = function(req, res) {
     var gpsClipsFolder = path.join(__dirname, '../../../..', 'modules/video/gps/');
 
     fileNames = [];
-
+	var maxSpeedClipName;
     var files = fs.readdirSync(gpsClipsFolder);
     for (var i in files) {
 
@@ -32,13 +32,21 @@ exports.index = function(req, res) {
         	if (data)
 	            try {
 	                var routeTrack = JSON.parse(data);
-	                //find speed valued > 90
+	                //find max speed in file valued > 30
+	                var maxSpeedInClip = 30
 	                Object.keys(routeTrack).forEach(function(key) {
-	                    if (parseInt(JSON.parse(routeTrack[key]).speed) > 90) {
-	                        fileNames.push(files[i]);
-	                        return (files[i]);
+
+	                    if (parseInt(JSON.parse(routeTrack[key]).speed) > maxSpeedInClip) {
+	                    	maxSpeedInClip = parseInt(JSON.parse(routeTrack[key]).speed)
+	                    	maxSpeedClipName = files[i]
 	                    }
+
 	                });
+
+	                if (maxSpeedInClip > 30)
+                        fileNames.push({'filename': maxSpeedClipName, 'maxSpeed': maxSpeedInClip});
+
+
 
 	            } catch (e) {
 	                console.log('malformed request', data);
@@ -47,8 +55,15 @@ exports.index = function(req, res) {
     }
 
 
+    //sort and return only the 2 highest values
+	var bySpeed = fileNames.slice(0);
+	bySpeed.sort(function(a,b) {
+	    return a.maxSpeed - b.maxSpeed;
+	});
+
+
 	res.json({data: 
-			fileNames
+			[bySpeed.pop().filename]
 	});
 
 
