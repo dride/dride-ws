@@ -26,6 +26,7 @@ module.exports = function(app) {
   app.use('/api/getCalibrationImage', require('./api/getCalibrationImage'));
   app.use('/api/getSerialNumber', require('./api/getSerialNumber'));
   app.use('/api/getCalibrationClips', require('./api/getCalibrationClips'));
+  app.use('/api/indicator', require('./api/indicator'));
   
 
 

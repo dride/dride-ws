@@ -5,8 +5,8 @@
 var path = require("path"),
 	fs = require('fs'),
    	ini = require('ini'),
-    exec = require('child_process').exec,
-    in_array = require('in_array')
+    in_array = require('in_array'),
+    spwan = require('child_process').spawn
 
 var config = require('../../config/environment');
 var fileNames   = [];
