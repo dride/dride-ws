@@ -21,6 +21,7 @@ module.exports = function(app) {
   app.use('/api/getSettings', require('./api/getSettings'));
   app.use('/api/setSetting', require('./api/setSetting'));
   app.use('/api/deleteClip', require('./api/deleteClip'));
+  app.use('/api/deleteAllClips', require('./api/deleteAllClips'));
   app.use('/api/updateFirmware', require('./api/updateFirmware'));
   app.use('/api/isOnline', require('./api/isOnline'));
   app.use('/api/getCalibrationImage', require('./api/getCalibrationImage'));
