@@ -15,7 +15,8 @@ exports.index = function(req, res) {
   //delete clip, thumb & gps file
   var p1 = new Promise((resolve, reject) => {
     try {
-      rimraf("../../../../modules/video/clip/", () => {
+      rimraf("/home/Cardigan/modules/video/clip/", () => {
+		fs.mkdirSync("/home/Cardigan/modules/video/clip");
         resolve();
       });
     } catch (err) {
@@ -24,7 +25,8 @@ exports.index = function(req, res) {
   });
   var p2 = new Promise((resolve, reject) => {
     try {
-      rimraf("../../../../modules/video/clip/", () => {
+      rimraf("/home/Cardigan/modules/video/thumb/", () => {
+		fs.mkdirSync("/home/Cardigan/modules/video/thumb");
         resolve();
       });
     } catch (err) {
@@ -33,14 +35,17 @@ exports.index = function(req, res) {
   });
   var p3 = new Promise((resolve, reject) => {
     try {
-      rimraf("../../../../modules/video/clip/", () => {
+      rimraf("/home/Cardigan/modules/video/gps/", () => {
+		fs.mkdirSync("/home/Cardigan/modules/video/gps");
         resolve();
       });
     } catch (err) {
       reject();
     }
   });
-  
+
+
+
   Promise.all([p1, p2, p3]).then(values => { 
 	res.json({ status: "1" });
   });
