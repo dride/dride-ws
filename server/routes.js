@@ -18,6 +18,7 @@ module.exports = function(app) {
 
   // Insert routes below
   app.use('/api/getClips', require('./api/getClips'));
+  app.use('/api/getEMRClips', require('./api/getEMRClips'));
   app.use('/api/getSettings', require('./api/getSettings'));
   app.use('/api/setSetting', require('./api/setSetting'));
   app.use('/api/deleteClip', require('./api/deleteClip'));
