@@ -7,23 +7,20 @@ var fs = require('fs');
 
 
 var config = require('../../config/environment');
-var fileNames   = [];
+var fileNames = [];
 
 // Get list of getPOLists
-exports.index = function(req, res) {
+exports.index = function (req, res) {
 
-	var savedVideos = path.join(__dirname, '../../../..', 'modules/video/savedVideos.json');
-
-	var EMRvideos  = fs.readFileSync(savedVideos, 'utf8').split(',')
-	EMRvideos.shift()
-
-
-
-    res.json({data: 
-		EMRvideos
-    	});
-
-
+  var savedVideos = path.join(__dirname, '../../../..', 'modules/video/savedVideos.json');
+  if (fs.existsSync(savedVideos)) {
+    var EMRvideos = fs.readFileSync(savedVideos, 'utf8')
+    res.json({
+      data: JSON.parse(EMRvideos)
+    });
+  } else {
+    res.json({
+      data: []
+    });
+  }
 };
-
-
