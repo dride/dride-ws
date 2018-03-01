@@ -6,7 +6,7 @@ var controller = require('./updateFirmware.controller');
 var router = express.Router();
 
 
-var config = require('../../config/environment');
+;
 
 var multer  = require('multer')
 var storage = multer.diskStorage({

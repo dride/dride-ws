@@ -4,7 +4,7 @@ var should = require('should');
 var app = require('../../app');
 var request = require('supertest');
 
-var config = require('../../config/environment');
+;
 
 describe('GET /api/deleteClip', function() {
   

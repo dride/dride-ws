@@ -6,7 +6,7 @@ var validator = require('validator');
 var fs = require('fs');
 
 
-var config = require('../../config/environment');
+;
 var fileNames = [];
 
 // Get list of getPOLists

@@ -1,7 +1,7 @@
 'use strict';
 
 
-var config = require('../../config/environment');
+;
 var exec = require('child_process').exec;
 
 

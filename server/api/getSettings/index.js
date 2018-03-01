@@ -6,7 +6,7 @@ var controller = require('./getSettings.controller');
 var router = express.Router();
 
 
-var config = require('../../config/environment');
+;
 
 
 
