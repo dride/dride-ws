@@ -14,7 +14,7 @@ exports.index = function(req, res) {
 	if (fieldValue == 'true') fieldValue = true;
 	if (fieldValue == 'false') fieldValue = false;
 
-	fieldValue = fieldValue.toLowerCase();
+	fieldValue = fieldValue.toString().toLowerCase();
 
 	config['settings'][fieldName] = fieldValue;
 
