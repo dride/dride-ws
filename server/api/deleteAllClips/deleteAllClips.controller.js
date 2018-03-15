@@ -42,9 +42,16 @@ exports.index = function(req, res) {
 	//   });
 
 	// add p3 for GPS
-	Promise.all([p1, p2]).then(values => {
-		res.json({
-			status: '1'
+	Promise.all([p1, p2])
+		.then(values => {
+			res.json({
+				status: '1'
+			});
+		})
+		.catch(error => {
+			res.json({
+				status: '0',
+				error: error
+			});
 		});
-	});
 };

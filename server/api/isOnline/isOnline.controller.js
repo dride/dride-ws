@@ -3,7 +3,7 @@ var fs = require('fs');
 
 // return 1 to indicate device is connected.
 exports.index = function(req, res) {
-	var state = '/home/Cardigan/state/app.json';
+	var state = '/home/core/state/app.json';
 	fs.writeFile(
 		state,
 		JSON.stringify({

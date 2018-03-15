@@ -1,40 +1,27 @@
 'use strict';
 
-
-var path = require("path");
+var path = require('path');
 var validator = require('validator');
 
-
-;
-var fileNames   = [];
+var fileNames = [];
 
 // Get list of getPOLists
 exports.index = function(req, res) {
-	//const videoClipsFolder = config.videoClipsFolder;
-
-
-	var videoClipsFolder = path.join(__dirname, '../../../..', 'modules/video/thumb/');
+	var videoClipsFolder = '/dride/thumb/';
 	var fs = require('fs');
-	
-	fileNames   = [];
+
+	fileNames = [];
 
 	var files = fs.readdirSync(videoClipsFolder);
 	for (var i in files) {
+		if (files[i] == '.DS_Store' || files[i] == '.gitignore') continue;
 
-	  if (files[i] == '.DS_Store' || files[i] == '.gitignore')
-	  	continue;
+		files[i] = files[i].split('.')[0];
 
-	  files[i] = (files[i].split('.'))[0]
-
-	  fileNames.push(files[i]);
+		fileNames.push(files[i]);
 	}
 
-
-    res.json({data: 
-    				fileNames
-    		});
-
-
+	res.json({
+		data: fileNames
+	});
 };
-
-
