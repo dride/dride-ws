@@ -7,25 +7,26 @@ var fileNames = [];
 exports.index = function(req, res) {
 	//TODO: Validate the input type's
 	var videoId = req.param('videoId');
-
+	var error = [];
 	//delete clip, thumb & gps file
-	var videoModulePath = '/dride/thumb/';
+	var videoPath = '/dride/';
+	var videoModulePath = '/home/core/modules/video/';
 	try {
-		fs.unlinkSync(videoModulePath + 'clip/' + videoId + '.mp4');
+		fs.unlinkSync(videoPath + 'clip/' + videoId + '.mp4');
 	} catch (err) {
-		console.log(err);
+		error.push(err);
 	}
 
 	try {
-		fs.unlinkSync(videoModulePath + 'thumb/' + videoId + '.jpg');
+		fs.unlinkSync(videoPath + 'thumb/' + videoId + '.jpg');
 	} catch (err) {
-		console.log(err);
+		error.push(err);
 	}
 
 	try {
-		fs.unlinkSync(videoModulePath + 'gps/' + videoId + '.json');
+		fs.unlinkSync(videoPath + 'gps/' + videoId + '.json');
 	} catch (err) {
-		console.log(err);
+		error.push(err);
 	}
 
 	//remove video from savedVideos.json
@@ -39,6 +40,7 @@ exports.index = function(req, res) {
 	fs.writeFileSync(savedVideosPath, JSON.stringify(EMRvideos));
 
 	res.json({
-		status: '1'
+		status: '1',
+		error: error
 	});
 };

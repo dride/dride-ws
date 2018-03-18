@@ -3,29 +3,28 @@
 var path = require('path');
 var validator = require('validator');
 
-var fileNames = [];
-
 // Get list of getPOLists
-exports.index = function(req, res) {
-	var videoClipsFolder = '/dride/thumb/';
-	var fs = require('fs');
+exports.index = function (req, res) {
+  var videoClipsFolder = '/dride/thumb/';
+  var fs = require('fs');
 
-	fileNames = [];
+  var clipsObj = [];
 
-	var files = fs.readdirSync(videoClipsFolder);
-	for (var i in files) {
-		if (files[i] == '.DS_Store' || files[i] == '.gitignore') continue;
+  var files = fs.readdirSync(videoClipsFolder);
+  for (var i in files) {
+    if (files[i] == '.DS_Store' || files[i] == '.gitignore') continue;
 
-		files[i] = files[i].split('.')[0];
+    files[i] = files[i].split('.')[0];
 
-		fileNames.push({
-			clip: '/clip/' + files[i] + '.mp4',
-			thumb: '/thumb/' + files[i] + '.jpg',
-			timestamp: files[i]
-		});
-	}
+    clipsObj.push({
+      key: files[i],
+      clip: '/clip/' + files[i] + '.mp4',
+      thumb: '/thumb/' + files[i] + '.jpg',
+      timestamp: files[i]
+    });
+  }
 
-	res.json({
-		data: fileNames
-	});
+  res.json({
+    data: clipsObj
+  });
 };
