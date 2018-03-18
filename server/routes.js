@@ -26,4 +26,5 @@ module.exports = function(app) {
 	app.use('/api/indicator', require('./api/indicator'));
 
 	app.use('/modules', express.static(path.join(__dirname, '../../', 'modules/')));
+	app.use('/', express.static('/dride/'));
 };

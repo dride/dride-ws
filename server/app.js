@@ -21,7 +21,6 @@ server.listen(config.port, config.ip, function() {
 	console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
 });
 
-//routing for getToken.html
 app.use('/', express.static(__dirname));
 
 // Expose app

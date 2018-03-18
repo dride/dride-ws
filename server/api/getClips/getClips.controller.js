@@ -18,7 +18,11 @@ exports.index = function(req, res) {
 
 		files[i] = files[i].split('.')[0];
 
-		fileNames.push(files[i]);
+		fileNames.push({
+			clip: '/clip/' + files[i] + '.mp4',
+			thumb: '/thumb/' + files[i] + '.jpg',
+			timestamp: files[i]
+		});
 	}
 
 	res.json({
