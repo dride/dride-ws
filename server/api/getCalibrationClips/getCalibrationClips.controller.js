@@ -12,7 +12,12 @@ exports.index = function(req, res) {
 
 	fileNames = [];
 	var maxSpeedClipName;
-	var files = fs.readdirSync(gpsClipsFolder);
+	try {
+		var files = fs.readdirSync(gpsClipsFolder);
+	} catch (e) {
+		fs.mkdirSync(gpsClipsFolder);
+		var files = fs.readdirSync(gpsClipsFolder);
+	}
 	for (var i in files) {
 		if (files[i] == '.DS_Store' || files[i] == '.gitignore') continue;
 

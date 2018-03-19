@@ -10,8 +10,8 @@ var fs = require('fs');
 describe('deleteAllClips', () => {
 	//copy clips to /dride/*
 	beforeEach(done => {
-		fs.copyFileSync('../../tests/data/1521390239070.jpg', '/dride/thumb/1521390239070.jpg');
-		fs.copyFileSync('../../tests/data/1521390239070.mp4', '/dride/clip/1521390239070.mp4');
+		fs.copyFileSync('tests/data/1521390239070.jpg', '/dride/thumb/1521390239070.jpg');
+		fs.copyFileSync('tests/data/1521390239070.mp4', '/dride/clip/1521390239070.mp4');
 		done();
 	});
 

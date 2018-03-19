@@ -1,41 +1,29 @@
 'use strict';
 
 var should = require('should');
+var chai = require('chai');
+var expect = chai.expect;
 var app = require('../../app');
 var request = require('supertest');
-
-;
+var fs = require('fs');
+var path = require('path');
 
 describe('GET /api/getSettings', function() {
-  
-  this.timeout(5000);
+	this.timeout(5000);
 
-  // it('should respond with POObject', function(done) {
-  //   request(app)
-  //     .get('/api/PO/getPOList?byCity=5')
-  //     .set('token', config.testAccount.token)
-  //     .expect(200)
-  //     .expect('Content-Type', /json/)
-  //     .end(function(err, res) {
-  //       if (err) return done(err);
-  //       res.body.should.have.property('status').and.equal(1);
-  //       res.body.should.have.property('POObject');
-  //       done();
-  //     });
-  // });
+	it('should respond with settings object', function(done) {
+		request(app)
+			.get('/api/getSettings')
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(function(err, res) {
+				if (err) return done(err);
 
-  // it('should respond with nothing found', function(done) {
-  //   request(app)
-  //     .get('/api/PO/getPOList?byCity=')
-  //     .set('token', config.testAccount.token)
-  //     .expect(200)
-  //     .expect('Content-Type', /json/)
-  //     .end(function(err, res) {
-  //       if (err) return done(err);
-  //       res.body.should.have.property('status').and.equal(0);
-  //       done();
-  //     });
-  // });
+				var configFromFile = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
 
+				expect(res.body).to.deep.equal(configFromFile);
 
+				done();
+			});
+	});
 });
