@@ -17,7 +17,7 @@ exports.index = function(req, res) {
 				resolve();
 			});
 		} catch (err) {
-			reject();
+			reject(err);
 		}
 	});
 	var p2 = new Promise((resolve, reject) => {
@@ -27,7 +27,7 @@ exports.index = function(req, res) {
 				resolve();
 			});
 		} catch (err) {
-			reject();
+			reject(err);
 		}
 	});
 	//   var p3 = new Promise((resolve, reject) => {
@@ -45,12 +45,12 @@ exports.index = function(req, res) {
 	Promise.all([p1, p2])
 		.then(values => {
 			res.json({
-				status: '1'
+				status: 1
 			});
 		})
 		.catch(error => {
 			res.json({
-				status: '0',
+				status: 0,
 				error: error
 			});
 		});
